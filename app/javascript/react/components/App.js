@@ -1,7 +1,17 @@
 import React from 'react'
+import UserIndexContainer from './UserIndexContainer'
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+  return (
+
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/users/:userId" component={UserIndexContainer} />
+      </Switch>
+    </BrowserRouter>
+
+  )
 }
 
 export default App
