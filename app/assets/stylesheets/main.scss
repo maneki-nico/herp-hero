@@ -2,7 +2,15 @@ body {
   background-color: #006400;
   background: url(AdobeStock_370997582.jpeg);
   background-size: contain;
+  font-family: 'Fjalla One', sans-serif;
+  #app {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 
+h3, h4, p {
+  font-family: 'Fjalla One', sans-serif;
 }
 
 a {
@@ -13,6 +21,12 @@ a:hover {
   color: #daa520;
 }
 
+.top-bar {
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 3px solid #158f4a;
+}
+
 section.top-bar-section {
   background-image: transparent;
 }
@@ -20,6 +34,56 @@ section.top-bar-section {
 ul.right {
   list-style-type: none;  
   background-color: transparent;
+}
+
+label, input {
+  display: block;
+}
+
+label {
+  color: #29473f;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 400px;
+  height: 35px;
+}
+
+select {
+  width: 400px;
+}
+
+form {
+  width: 500px;
+
+  .button {
+    width: 150px;
+    font-size: 100%;
+    padding: 5px;
+  }
+}
+
+.card {
+  border-radius: 10px;
+}
+
+.card-section {
+  line-height: 15px;
+}
+
+.form {
+  background-color: #FFFFFF;
+  padding: 15px;
+}
+
+.form-header {
+  background-color: #29473f;
+  color: #FFFFFF;
+  font-family: 'Londrina Solid', cursive;
+  font-size: 150%;
+  height: 50px;
+  padding: 10px;
 }
 
 .homepage-subheader {
@@ -52,6 +116,11 @@ ul.right {
   a {
     background-color: #29473f;
     color: #FFFFFF;
+    font-family: 'Londrina Solid', cursive;
+    font-size: 150%;
+  }
+  a:hover {
+    letter-spacing: 1px;
   }
   font-family: 'Londrina Solid', cursive;
 }
@@ -73,4 +142,6 @@ ul.right {
 
 .card-section {
   background-color: #FFFF;
+  font-family: 'Fjalla One', sans-serif;
+  margin: auto;
 }

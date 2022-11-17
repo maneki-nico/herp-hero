@@ -1,5 +1,5 @@
 import React from 'react'
-import UserIndexContainer from './UserIndexContainer'
+import UserShowContainer from './UserShowContainer'
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 export const App = (props) => {
@@ -7,7 +7,7 @@ export const App = (props) => {
 
     <BrowserRouter>
       <Switch>
-        <Route exact path="/users/:userId" component={UserIndexContainer} />
+        <Route exact path="/users/:userId" component={UserShowContainer} />
       </Switch>
     </BrowserRouter>
 
