@@ -27,6 +27,7 @@ const UserShowContainer = (props) => {
 
   const postNewPet = async (formPayload) => {
     try {
+      //debugger
       const response = await fetch(`/api/v1/pets`, {
         method: 'POST', 
         credentials: 'same-origin',
@@ -75,7 +76,7 @@ const UserShowContainer = (props) => {
       <h1>Hello!</h1>
       {user.email}
       <div className="card">
-        <div className="card divider centered">
+        <div className="card centered">
           <h2 className="form-header">Your Pets</h2>
         </div>
         <div className="card-section">

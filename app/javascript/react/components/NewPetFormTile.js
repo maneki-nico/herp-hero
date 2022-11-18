@@ -5,6 +5,7 @@ const NewPetFormTile = (props) => {
     name: "",
     animal: "",
     species: "",
+    profile_photo: ""
   })
 
   const validateForm = () => {
@@ -16,7 +17,7 @@ const NewPetFormTile = (props) => {
     }
     if (!['Snake', 'Lizard', 'Turtle', 'Frog', 'Axolotl',
       'Toad', 'Newt', 'Salamander', 'Other'].includes(newPet.animal)) {
-      setNewReview({
+      setNewPet({
         ...newPet,
         animal: null
       })
@@ -27,6 +28,12 @@ const NewPetFormTile = (props) => {
         species: null
       })
     }
+    if (newPet.profile_photo.trim === "") {
+      setNewPet({
+        ...newPet,
+        profile_photo: null
+      })
+    }
   }
 
   const clearForm = () => {
@@ -34,6 +41,7 @@ const NewPetFormTile = (props) => {
       name: '',
       animal: '',
       species: '',
+      profile_photo: ''
     })
   }
 
@@ -42,6 +50,7 @@ const NewPetFormTile = (props) => {
     const holdName = newPet.name
     const holdAnimal = newPet.animal
     const holdSpecies = newPet.species
+    const holdPhoto = newPet.profile_photo
     validateForm()
     if (props.postNewPet(newPet)) {
       clearForm()
@@ -49,7 +58,8 @@ const NewPetFormTile = (props) => {
       setNewPet({
         name: holdName, 
         animal: holdAnimal, 
-        species: holdSpecies
+        species: holdSpecies,
+        profile_photo: holdPhoto
       })
     }
   }
@@ -87,6 +97,10 @@ const NewPetFormTile = (props) => {
         <label>
           Species (ex. Leopard Gecko): 
           <input name="species" id="species" type="string" value={newPet.species} onChange={handleChange}/>
+        </label>
+        <label>
+          Add a Photo via URL:
+          <input name="profile_photo" id="profile_photo" type="string" value={newPet.profile_photo} onChange={handleChange}/>
         </label>
         <input className="button small-centered" type="submit" value="Add New Pet"/>
       </form>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   get '/users/:id', to: "homes#index"
+  get '/pets/:id', to: "homes#index"
   
   namespace :api do
     namespace :v1 do

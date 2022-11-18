@@ -3,10 +3,9 @@ import { Link } from "react-router-dom"
 
 const PetIndexTile = (props) => {
   const { pet } = props
-  debugger
   return (
     <div>
-      {pet.name} - {pet.animal} - {pet.species}
+      <Link to={`/pets/${pet.id}`}>{pet.name}</Link>  - {pet.animal} - {pet.species}
     </div>
   )
 }
