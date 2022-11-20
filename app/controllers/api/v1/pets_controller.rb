@@ -1,8 +1,5 @@
-require 'pry'
-
 class Api::V1::PetsController < ApiController
   def create
-    # binding.pry
     pet = Pet.new(pet_params)
     pet.user = current_user
     
