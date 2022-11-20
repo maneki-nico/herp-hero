@@ -1,7 +1,7 @@
 body {
-  background-color: #006400;
-  background: url(AdobeStock_370997582.jpeg);
-  background-size: contain;
+  background-color: #29473f;
+  background: url(AdobeStock_370997624.jpeg);
+  background-size: 125%;
   font-family: 'Fjalla One', sans-serif;
   #app {
     padding-left: 20px;
@@ -25,10 +25,8 @@ a:hover {
   color: #daa520;
 }
 
-.top-bar {
-  padding-left: 15px;
-  padding-right: 15px;
-  border-bottom: 2px solid #158f4a;
+.logo {
+  width: 300px;
 }
 
 section.top-bar-section {
@@ -113,7 +111,6 @@ img.pet-photo {
   background-color: #29473f;
   color: #FFFFFF;
   font-family: 'Londrina Solid', cursive;
-  -webkit-text-stroke: 1px #158f4a;
   font-size: 150%;
   height: 50px;
   padding: 10px;
@@ -154,19 +151,18 @@ ul.card {
 }
 
 .top-bar {
-  background-color: #29473f;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #2f5141;
   a {
-    background-color: #29473f;
     color: #FFFFFF;
     font-family: 'Londrina Solid', cursive;
-    -webkit-text-stroke: 1px #158f4a;
     font-size: 150%;
   }
   a:hover {
     letter-spacing: 1px;
   }
   font-family: 'Londrina Solid', cursive;
-  -webkit-text-stroke: 1px #158f4a;
 }
 
 .header {

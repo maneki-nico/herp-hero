@@ -13,11 +13,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
+
+  <%= favicon_link_tag asset_path('favicon.ico') %>
 </head>
 <body>
   
   <nav class="top-bar centered">
-    <h1><a href="/">HerpHero</a></h1>
+    <a href="/" class="logo"><%= image_tag("herphero-high-resolution-logo-color-on-transparent-background.png", alt: "HerpHero") %> </a>
 
     <section class="top-bar-section">
       <ul class="right">

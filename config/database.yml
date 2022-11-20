@@ -81,5 +81,7 @@ test:
 production:
   <<: *default
   database: herp-hero_production
-  username: herp-hero
-  password: <%= ENV['HERP-HERO_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+  # username: herp-hero
+  # password: <%= ENV['HERP-HERO_DATABASE_PASSWORD'] %>
