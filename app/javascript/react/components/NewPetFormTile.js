@@ -5,6 +5,8 @@ const NewPetFormTile = (props) => {
     name: "",
     animal: "",
     species: "",
+    birthday: "",
+    personality: "",
     profile_photo: ""
   })
 
@@ -28,6 +30,18 @@ const NewPetFormTile = (props) => {
         species: null
       })
     }
+    if (newPet.birthday.trim === "") {
+      setNewPet({
+        ...newPet,
+        birthday: null
+      })
+    }
+    if (newPet.personality.trim === "") {
+      setNewPet({
+        ...newPet,
+        personality: null
+      })
+    }
     if (newPet.profile_photo.trim === "") {
       setNewPet({
         ...newPet,
@@ -41,6 +55,8 @@ const NewPetFormTile = (props) => {
       name: '',
       animal: '',
       species: '',
+      birthday: '',
+      personality: '',
       profile_photo: ''
     })
   }
@@ -50,15 +66,19 @@ const NewPetFormTile = (props) => {
     const holdName = newPet.name
     const holdAnimal = newPet.animal
     const holdSpecies = newPet.species
+    const holdBirthday = newPet.birthday
+    const holdPersonality = newPet.personality
     const holdPhoto = newPet.profile_photo
     validateForm()
-    if (props.postNewPet(newPet)) {
+    if (!props.postNewPet(newPet)) {
       clearForm()
     } else {
       setNewPet({
         name: holdName, 
         animal: holdAnimal, 
         species: holdSpecies,
+        birthday: holdBirthday,
+        personality: holdPersonality,
         profile_photo: holdPhoto
       })
     }
@@ -97,6 +117,14 @@ const NewPetFormTile = (props) => {
         <label>
           Species (ex. Leopard Gecko): 
           <input name="species" id="species" type="string" value={newPet.species} onChange={handleChange}/>
+        </label>
+        <label>
+          Birthday: 
+          <input name="birthday" id="birthday" type="date" value={newPet.birthday} onChange={handleChange}/>
+        </label>
+        <label>
+          Personality: 
+          <input name="personality" id="personality" type="text" value={newPet.personality} onChange={handleChange}/>
         </label>
         <label>
           Add a Photo via URL:

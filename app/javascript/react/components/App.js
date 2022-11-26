@@ -1,6 +1,7 @@
 import React from 'react'
 import UserShowContainer from './UserShowContainer'
 import PetShowContainer from './PetShowContainer'
+import GoogleMap from './GoogleMap'
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 
 export const App = (props) => {
@@ -10,6 +11,7 @@ export const App = (props) => {
       <Switch>
         <Route exact path="/users/:userId" component={UserShowContainer} />
         <Route exact path="/pets/:id" component={PetShowContainer} />
+        <Route exact path="/map" component={GoogleMap} />
       </Switch>
     </BrowserRouter>
 

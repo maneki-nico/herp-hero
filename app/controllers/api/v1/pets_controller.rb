@@ -1,3 +1,5 @@
+require "pry"
+
 class Api::V1::PetsController < ApiController
   def create
     pet = Pet.new(pet_params)
@@ -16,6 +18,6 @@ class Api::V1::PetsController < ApiController
 
   private
   def pet_params
-    params.require(:pet).permit(:name, :animal, :species, :profile_photo)
+    params.require(:pet).permit(:name, :animal, :species, :birthday, :personality, :profile_photo)
   end
 end

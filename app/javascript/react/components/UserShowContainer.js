@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react"
 import PetIndexTile from "./PetIndexTile"
 import NewPetFormContainer from "./NewPetFormContainer"
+import VetShowTile from "./VetShowTile"
+import CalendarContainer from "./CalendarContainer"
 
 const UserShowContainer = (props) => {
   const [user, setUser] = useState({
-    pets: []
+    pets: [],
+    vet: {}
   })
 
   const [errors, setErrors] = useState("")
@@ -19,7 +22,13 @@ const UserShowContainer = (props) => {
           throw(error)
       }
       const fetchedUser = await response.json()
-      setUser(fetchedUser.user)
+      const newUser = {
+        ...fetchedUser.user,
+      } 
+      if (newUser.vet === undefined) {
+        newUser.vet = {name: "You don't have one yet!"}
+      }
+      setUser(newUser)
     } catch(err) {
       console.error(`Error in fetch: ${err.message}`)
     }
@@ -73,21 +82,27 @@ const UserShowContainer = (props) => {
 
   return (
     <div className="user-dashboard">
-      <h1>Hello!</h1>
-      {user.email}
-      <div className="card">
-        <div className="card centered">
-          <h2 className="form-header">Your Pets</h2>
+      <h2 className="centered dash-greeting">Hello, {user.email}! {user.zip}</h2>
+      <div className="grid-x grid-margin-x">
+        <CalendarContainer/>
+        <div className="card cell medium-5 large-5">
+          <div className="card-divider centered">
+            <h2 className="form-header">Your Pets</h2>
+          </div>
+          <div className="card-section">
+            {petsList}
+          </div>
         </div>
-        <div className="card-section">
-          {petsList}
-        </div>
+        <NewPetFormContainer 
+          errors={errors}
+          pets={user.pets}
+          postNewPet={postNewPet}
+        />
+        <VetShowTile
+          key={user.id}
+          vet={user.vet} 
+        />
       </div>
-      <NewPetFormContainer 
-        errors={errors}
-        pets={user.pets}
-        postNewPet={postNewPet}
-      />
     </div>
 
   )
