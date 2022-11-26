@@ -1,12 +1,76 @@
 body {
   background-color: #29473f;
-  background: url(AdobeStock_370997624.jpeg);
+  background: url(AdobeStock_370997582.jpeg);
+  background-blend-mode: darken;
   background-size: 125%;
   font-family: 'Fjalla One', sans-serif;
   #app {
     padding-left: 20px;
     padding-right: 20px;
   }
+}
+
+input {
+  display:flex;
+  margin: auto;
+}
+
+label {
+  margin: auto;
+}
+
+input#user_remember_me {
+  margin-left: 0 auto;
+  height: 25px;
+  size: 25px;
+  line-height: 0;
+  display: inline-block;
+}
+
+input[type="submit" i] {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+div.label {
+  margin-bottom: 0;
+}
+
+div.field {
+  height: 100px;
+}
+
+.container.squish {
+  margin: 50px auto;
+  width: max-content;
+  line-height: 15px;
+  padding: 15px;
+}
+
+.vet-tile {
+  height: 250px;
+}
+
+.dash-greeting {
+  color: #FFFFFF;
+  background-color: #2f5141;
+  border-radius: 15px;
+  margin-top: 15px;
+}
+
+.vet-result-section {
+  list-style-position: inside;
+  height: 450px;
+  overflow: scroll;
+  padding-left: 30px;
+}
+
+.map {
+  margin: auto;
+}
+
+li.results {
+  padding-top: 20px;
 }
 
 h3, h4, p {
@@ -44,7 +108,7 @@ label, input {
 
 label {
   color: #29473f;
-  margin-bottom: 20px;
+  //margin-bottom: 20px;
 }
 
 input {
@@ -73,6 +137,7 @@ div.form {
 
 img.pet-photo {
   object-fit: contain;
+  height: 300px;
   margin: auto;
   border-radius: 10px;
 }
@@ -82,13 +147,22 @@ img.pet-photo {
   margin: 10px;
 }
 
-.card {
+.card-divider {
   border-radius: 10px;
   border: 1px solid #2C8F15;
   margin: 10px;
+  background-color: #29473f;
+  padding: 10px;
 }
 
-.card-divider {
+.form-header {
+  color: #FFFFFF;
+  font-family: 'Londrina Solid', cursive;
+  font-size: 24px;
+  margin: auto;
+}
+
+.card {
   border-radius: 10px;
 }
 
@@ -107,15 +181,6 @@ img.pet-photo {
   margin: 15px;
 }
 
-.form-header {
-  background-color: #29473f;
-  color: #FFFFFF;
-  font-family: 'Londrina Solid', cursive;
-  font-size: 150%;
-  height: 50px;
-  padding: 10px;
-}
-
 .homepage-subheader {
   font-size: 125%;
 }
@@ -127,10 +192,6 @@ ul {
 
 ul.card {
   text-align: left;
-}
-
-.card-divider {
-  padding: auto;
 }
 
 .button {
@@ -145,9 +206,20 @@ ul.card {
   }
 }
 
+input.button {
+  font-weight: bolder;
+  font-size: 12px;
+  background: #158f4a;
+  padding: 15px;
+  border-radius: 50px;
+  transition: 0.4s ease 0s;
+  a {
+    color: #FFFFFF;
+  }
+}
+
 .button:hover {
   background:#daa520;
-  color: #000000;
 }
 
 .top-bar {
@@ -160,7 +232,8 @@ ul.card {
     font-size: 150%;
   }
   a:hover {
-    letter-spacing: 1px;
+    color: #2C8F15;
+    transition: 0.4s ease 0s;
   }
   font-family: 'Londrina Solid', cursive;
 }
@@ -170,7 +243,7 @@ ul.card {
 }
 
 .container {
-  margin: 175px auto 50px;
+  margin: 150px auto 50px;
   padding: 15px;
   border: 3px solid #2C8F15;
   border-radius: 50px;
