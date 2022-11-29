@@ -1,7 +1,14 @@
 class Api::V1::VetsController < ApiController
   def create
-    vet = Vet.new(vet_params)
-    vet.user = current_user
+    vet = nil
+    if current_user.vet == nil
+      vet = Vet.new(vet_params)
+      vet.user = current_user
+    else
+      vet = current_user.vet
+      vet.name = vet_params[:name]
+      vet.address = vet_params[:address]
+    end
 
     if vet.save
       render json: vet
@@ -17,6 +24,6 @@ class Api::V1::VetsController < ApiController
   private
 
   def vet_params
-    params.require(:vet).permit(:name, :phone_number, :email)
+    params.require(:vet).permit(:name, :address)
   end
 end

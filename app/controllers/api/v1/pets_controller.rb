@@ -1,5 +1,3 @@
-require "pry"
-
 class Api::V1::PetsController < ApiController
   def create
     pet = Pet.new(pet_params)
@@ -13,7 +11,7 @@ class Api::V1::PetsController < ApiController
   end
 
   def show
-    render json: Pet.find(params[:id])
+    render json: Pet.find(params[:id]), serializer: PetSerializer
   end
 
   private

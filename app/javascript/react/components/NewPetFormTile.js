@@ -21,7 +21,7 @@ const NewPetFormTile = (props) => {
       'Toad', 'Newt', 'Salamander', 'Other'].includes(newPet.animal)) {
       setNewPet({
         ...newPet,
-        animal: null
+        animal: ""
       })
     }
     if (newPet.species.trim === "") {
@@ -61,7 +61,7 @@ const NewPetFormTile = (props) => {
     })
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     const holdName = newPet.name
     const holdAnimal = newPet.animal
@@ -70,9 +70,8 @@ const NewPetFormTile = (props) => {
     const holdPersonality = newPet.personality
     const holdPhoto = newPet.profile_photo
     validateForm()
-    if (!props.postNewPet(newPet)) {
-      clearForm()
-    } else {
+    const postSuccess = await props.postNewPet(newPet)
+    if (!postSuccess) {
       setNewPet({
         name: holdName, 
         animal: holdAnimal, 
@@ -81,6 +80,8 @@ const NewPetFormTile = (props) => {
         personality: holdPersonality,
         profile_photo: holdPhoto
       })
+    } else {
+      clearForm()
     }
   }
 

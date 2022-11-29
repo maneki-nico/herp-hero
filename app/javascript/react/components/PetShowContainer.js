@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react"
 import PetPhotoTile from "./PetPhotoTile"
 import PetShowTile from "./PetShowTile"
-import NoteIndexContainer from "./NoteIndexContainer"
 import NewNoteFormTile from "./NewNoteFormTile"
+import NoteIndexTile from "./NoteIndexTile"
 
 const PetShowContainer = (props) => {
-  const [pet, setPet] = useState({})
+  const [pet, setPet] = useState({
+    notes: [],
+    id: props.match.params.id
+  })
   const getPet = async () => {
     try {
-      //debugger
       const petId = props.match.params.id
       const response = await fetch(`/api/v1/pets/${petId}`)
       if (!response.ok) {
@@ -17,7 +19,13 @@ const PetShowContainer = (props) => {
         throw(error)
       }
       const fetchedPet = await response.json()
-      setPet({...fetchedPet})
+      //debugger
+      const newPet = {...fetchedPet.pet}
+      if (!newPet.notes) {
+        newPet.notes = []
+      }
+      //debugger
+      setPet(newPet)
     } catch(err) {
       console.error(`Error in fetch: ${err.message}`)
     }
@@ -27,10 +35,12 @@ const PetShowContainer = (props) => {
     getPet()
   }, [])
 
+  const [errors, setErrors] = useState("")
+
+
   const postNewNote = async (formPayload) => {
     try {
-      //debugger
-      const response = await fetch(`/api/v1/pets`, {
+      const response = await fetch(`/api/v1/notes`, {
         method: 'POST', 
         credentials: 'same-origin',
         headers: {
@@ -46,9 +56,9 @@ const PetShowContainer = (props) => {
       }
       const postedNote = await response.json()
       if (postedNote.note) {
-        setNote({
-          ...note, 
-          notes: [...pet.notes, postedNote]
+        setPet({
+          ...pet, 
+          notes: [...pet.notes, postedNote.note]
         })
         return true
       } else {
@@ -60,7 +70,15 @@ const PetShowContainer = (props) => {
     }
   }
 
-
+  const notesList = pet.notes.map((note) => {
+    //debugger
+    return (
+      <NoteIndexTile
+      key={note.id}
+      note={note} 
+      />
+    )
+  })
 
   return (
     <div className="grid-x grid-margin-x">
@@ -83,11 +101,11 @@ const PetShowContainer = (props) => {
           <h2 className="form-header">Notes</h2>
         </div>
         <div className="card-section">
-          {/* <NoteIndexContainer
-            // notes={pet.notes}
-            // postNewNote={postNewNote}
-          /> */}
-          <NewNoteFormTile />
+          {notesList}
+          <NewNoteFormTile
+            pet={pet}
+            postNewNote={postNewNote}
+          />
         </div>
       </div>
     </div>
