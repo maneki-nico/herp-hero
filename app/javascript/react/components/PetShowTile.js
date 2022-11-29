@@ -3,8 +3,6 @@ import React from 'react'
 const PetShowTile = (props) => {
   const pet = props.pet
 
-  //debugger
-
   return (
         <div>
           <h2 className="centered">{ pet.name }</h2>

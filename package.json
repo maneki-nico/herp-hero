@@ -13,13 +13,18 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.13.10",
     "@googlemaps/js-api-loader": "^1.15.1",
+    "@mobiscroll/react": "https://npm.mobiscroll.com/@mobiscroll/react-trial/-/react-trial-5.20.0.tgz",
     "@rails/webpacker": "3.5",
     "babel-loader": "^8.0.6",
+    "notiflix": "^3.2.5",
     "prop-types": "~15.6.0",
     "react": "~16.8.0",
+    "react-calendar": "^4.0.0",
     "react-dom": "~16.8.0",
     "react-geocode": "^0.2.3",
+    "react-modal": "^3.16.1",
     "react-router-dom": "5.0.0",
+    "reactjs-popup": "^2.0.5",
     "redbox-react": "1.6.0"
   },
   "devDependencies": {

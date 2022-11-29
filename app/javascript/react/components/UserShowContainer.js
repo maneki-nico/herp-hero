@@ -7,26 +7,29 @@ import CalendarContainer from "./CalendarContainer"
 const UserShowContainer = (props) => {
   const [user, setUser] = useState({
     pets: [],
+    tasks: [],
     vet: {}
   })
 
-  const [errors, setErrors] = useState("")
+  const [taskErrors, setTaskErrors] = useState("")
+  const [petErrors, setPetErrors] = useState("")
 
   const getUser = async () => {
     try {
       const userId = props.match.params.userId
       const response = await fetch(`/api/v1/users/${userId}`)
       if (!response.ok) {
-          const errorMessage = `${response.status} (${response.statusText})`
-          const error = new Error(errorMessage)
-          throw(error)
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw(error)
       }
       const fetchedUser = await response.json()
+      //debugger
       const newUser = {
         ...fetchedUser.user,
       } 
-      if (newUser.vet === undefined) {
-        newUser.vet = {name: "You don't have one yet!"}
+      if (newUser.vet === null) {
+        newUser.vet = {}
       }
       setUser(newUser)
     } catch(err) {
@@ -36,7 +39,6 @@ const UserShowContainer = (props) => {
 
   const postNewPet = async (formPayload) => {
     try {
-      //debugger
       const response = await fetch(`/api/v1/pets`, {
         method: 'POST', 
         credentials: 'same-origin',
@@ -52,14 +54,15 @@ const UserShowContainer = (props) => {
         throw(error)
       }
       const postedPet = await response.json()
-      if (postedPet) {
+      if (postedPet.pet) {
         setUser({
           ...user, 
-          pets: [...user.pets, postedPet]
+          pets: [...user.pets, postedPet.pet]
         })
+        setPetErrors("")
         return true
       } else {
-        setErrors(postedPet.errors)
+        setPetErrors(postedPet.errors)
         return false
       }
     } catch(err) {
@@ -70,7 +73,7 @@ const UserShowContainer = (props) => {
   useEffect(() => {
     getUser()
   }, [])
-
+  //debugger
   const petsList = user.pets.map((pet) => {
     return (
       <PetIndexTile
@@ -80,21 +83,60 @@ const UserShowContainer = (props) => {
     )
   })
 
+  const postNewTask = async (formPayload) => {
+    try {
+      const response = await fetch(`/api/v1/tasks`, {
+        method: 'POST', 
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formPayload)
+      })
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw(error)
+      }
+      const postedTask = await response.json()
+      if (postedTask) {
+        setUser({
+          ...user, 
+          tasks: [...user.tasks, postedTask]
+        })
+        return true
+      } else {
+        setTaskErrors(postedTask.errors)
+        return false
+      }
+    } catch(err) {
+      console.error(`Error in fetch: ${err.message}`)
+    }
+  }
+
   return (
     <div className="user-dashboard">
-      <h2 className="centered dash-greeting">Hello, {user.email}! {user.zip}</h2>
+      <h2 className="centered dash-greeting">Hello, {user.email}!</h2>
       <div className="grid-x grid-margin-x">
-        <CalendarContainer/>
+        <CalendarContainer
+        tasks={user.tasks}
+        postNewTask={postNewTask}
+        errors={taskErrors}
+        />
         <div className="card cell medium-5 large-5">
           <div className="card-divider centered">
             <h2 className="form-header">Your Pets</h2>
           </div>
           <div className="card-section">
             {petsList}
+            <br></br>
+            <p>Need to add a new pet? (Congrats!)<br></br>
+            <b>See the 'Add a New Pet' module!</b></p>
           </div>
         </div>
         <NewPetFormContainer 
-          errors={errors}
+          errors={petErrors}
           pets={user.pets}
           postNewPet={postNewPet}
         />

@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 
 const VetShowTile = (props) => {
   const vet = props.vet
-
-  if (vet.name === null) {
-    vet.name = "You don't have one yet!"
+  let message = ""
+  if (!vet.name) {
+    message = "None yet."
+  } else {
+    message = "Need a new one?"
   }
-  //debugger
   return (
     <div className="vet-tile card cell medium-5 large-5">
       <div className="card-section centered">
         <h3>Your Exotic Veterinarian:</h3>
         <h4>{ vet.name }</h4>
-        <p>{ vet.phone_number }</p>
-        <p>{ vet.email }</p>
+        <p>{ vet.address }</p>
         <br></br>
-        <p>Don't have one yet?</p>
+        <p>{message}</p>
         <button className="button"><a href="/map">Find One Near You</a></button>
       </div>
     </div>

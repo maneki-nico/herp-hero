@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   has_many :pets 
+  has_many :tasks
   has_one :vet
 
   validates :zip, presence: true

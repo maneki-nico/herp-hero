@@ -3,13 +3,9 @@ import { Loader } from "@googlemaps/js-api-loader"
 import Geocode from "react-geocode"
 import MapResultIndexTile from "./MapResultIndexTile"
 
-// restrict access - only localhost:3000 and your herphero.onrender.com deployed app
+Geocode.setApiKey("AIzaSyCOELqoVhdQJVv_Itp-OlLR5YCDBqAVJhg");
 
-Geocode.setApiKey("AIzaSyDwMeAsv8WC3Y6Y-2IiSNCSzxSRjuR8qGo");
-
-const GoogleMap = (props) => {
-  //const [userZip, setUserZip] = useState("")
-  
+const GoogleMap = (props) => {  
   const [searchResults, setSearchResults] = useState([])
   
   const loader = new Loader({
@@ -55,7 +51,6 @@ const GoogleMap = (props) => {
     
     
   }
-  console.log(searchResults)
   
   const getUserZip = async () => {
     try {

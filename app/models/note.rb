@@ -1,4 +1,4 @@
 class Note < ApplicationRecord
-  validates :body
+  validates :body, presence: true
   belongs_to :pet
 end

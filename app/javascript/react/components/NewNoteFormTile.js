@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 
 const NewNoteFormTile = (props) => {
+  //debugger
   const [newNote, setNewNote] = useState({
-    body: ""
+    body: "",
+    petId: props.pet.id
   })
 
   const validateForm = () => {
@@ -17,19 +19,24 @@ const NewNoteFormTile = (props) => {
   const clearForm = () => {
     setNewNote({
       body: '',
+      petId: props.pet.id
     })
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
     const holdBody = newNote.body
+    const holdPetId = newNote.petId
     validateForm()
+    //debugger
     if (!props.postNewNote(newNote)) {
       clearForm()
     } else {
-      setNewPet({
-        body: holdBody
+      setNewNote({
+        body: holdBody,
+        petId: holdPetId
       })
+      clearForm()
     }
   }
 

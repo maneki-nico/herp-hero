@@ -9,6 +9,42 @@ body {
     padding-right: 20px;
   }
 }
+div.card-section {
+  .react-calendar {
+    padding-bottom: 25px;
+    margin: auto;
+  }
+}
+
+button.react-calendar__tile {
+  background-color: #FFFFFF;
+  color: #000000;
+  border-radius: 0;
+  height: 50px;
+}
+
+button.react-calendar__navigation__arrow {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  font-size: 20px;
+  letter-spacing: 2px;
+  padding: 2px;
+}
+
+button.react-calendar__navigation__label {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  font-size: 24px;
+  margin-bottom: 15px;
+  padding: 2px;
+}
+
+button.react_calendar__navigation {
+  padding-bottom: 15px;
+  word-spacing: 2px;
+}
 
 input {
   display:flex;
@@ -16,7 +52,7 @@ input {
 }
 
 label {
-  margin: auto;
+  margin: 20px;
 }
 
 input#user_remember_me {
@@ -24,12 +60,25 @@ input#user_remember_me {
   height: 25px;
   size: 25px;
   line-height: 0;
-  display: inline-block;
+  display: block;
 }
 
 input[type="submit" i] {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+[type='submit'], [type='button'] {
+  background-color: #2C8F15;
+  border-radius: 20px;
+  border: 1px solid #2C8F15;
+  color: #FFFFFF;
+}
+
+[type='submit']:hover {
+  background-color: #daa520;
+  transition: 0.4s ease 0s;
+  border: 1px solid #daa520;
 }
 
 div.label {
@@ -48,7 +97,15 @@ div.field {
 }
 
 .vet-tile {
-  height: 250px;
+  height: max-content;
+}
+
+form.pet-form {
+  margin: auto;
+}
+
+form.pet-form.label {
+  margin-top: 20px;
 }
 
 .dash-greeting {
@@ -108,12 +165,12 @@ label, input {
 
 label {
   color: #29473f;
-  //margin-bottom: 20px;
 }
 
 input {
   width: 400px;
   height: 35px;
+  margin: auto;
 }
 
 select {
@@ -121,7 +178,6 @@ select {
 }
 
 form {
-  width: 500px;
   margin: auto;
 
   .button {
@@ -210,12 +266,16 @@ input.button {
   font-weight: bolder;
   font-size: 12px;
   background: #158f4a;
-  padding: 15px;
   border-radius: 50px;
   transition: 0.4s ease 0s;
   a {
     color: #FFFFFF;
   }
+}
+
+input.button.small-centered {
+  margin: auto;
+  text-align: center;
 }
 
 .button:hover {
@@ -251,4 +311,40 @@ input.button {
 
 .centered {
   text-align: center;
+}
+
+.Modal {
+  position: absolute;
+  background-color: #FFFFFF;
+  border: 1px solid #2C8F15;
+  border-radius: 30px;
+  height: 300px;
+  width: 450px;
+  padding: 25px;
+  overflow: scroll;
+}
+
+div.ReactModal {
+  overflow: scroll;
+}
+.close-button {
+  color: #2C8F15;
+  font-size: 20px;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+input.task-name-input {
+  width: 250px;
+}
+
+p.add-new-task-header {
+  font-weight: bold;
+  font-size: 110%;
 }
