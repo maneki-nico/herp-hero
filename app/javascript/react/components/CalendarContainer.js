@@ -63,6 +63,7 @@ const CalendarContainer = (props) => {
         <h2 className="form-header">Your Tasks</h2>
       </div>
       <div className="card-section">
+        <p>Click on a date to view the day's tasks or to add a new one!</p>
         <Calendar
         onChange={onChange}
         value={value}
