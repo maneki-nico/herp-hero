@@ -1,5 +1,3 @@
-require "pry"
-
 class Api::V1::TasksController < ApiController
   def create
     task = Task.new(task_params)

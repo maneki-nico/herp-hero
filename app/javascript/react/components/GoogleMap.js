@@ -48,8 +48,6 @@ const GoogleMap = (props) => {
     }).catch((error) => {
       console.log(error)
     })
-    
-    
   }
   
   const getUserZip = async () => {
@@ -95,7 +93,6 @@ const GoogleMap = (props) => {
         </div>
       </div>
     </div>
-
   )
 }
 export default GoogleMap

@@ -65,5 +65,4 @@ ActiveRecord::Schema.define(version: 2022_11_29_033644) do
     t.string "name", null: false
     t.index ["user_id"], name: "index_vets_on_user_id"
   end
-
 end

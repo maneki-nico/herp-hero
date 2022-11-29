@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 const MapResultIndexTile = (props) => {
   const {result} = props
-
   const [message, setMessage] = useState("")
 
   const submitVet = async() => {

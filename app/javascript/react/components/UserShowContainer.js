@@ -24,7 +24,6 @@ const UserShowContainer = (props) => {
         throw(error)
       }
       const fetchedUser = await response.json()
-      //debugger
       const newUser = {
         ...fetchedUser.user,
       } 
@@ -73,7 +72,7 @@ const UserShowContainer = (props) => {
   useEffect(() => {
     getUser()
   }, [])
-  //debugger
+  
   const petsList = user.pets.map((pet) => {
     return (
       <PetIndexTile

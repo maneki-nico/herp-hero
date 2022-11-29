@@ -19,7 +19,6 @@ const VetShowTile = (props) => {
         <button className="button"><a href="/map">Find One Near You</a></button>
       </div>
     </div>
-
   )
 }
 
