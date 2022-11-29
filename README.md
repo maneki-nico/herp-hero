@@ -1,24 +1,23 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# HerpHero 
 
-Things you may want to cover:
+This application uses React and Ruby on Rails to allow the user to manage care and husbandry tasks for their pet reptiles and amphibians. 
 
-* Ruby version
+Currently, only create and read functionalities are implemented throughout the application.
 
-* System dependencies
+## Usage
 
-* Configuration
+**[Link to the live deployment](https://herphero.onrender.com/)**
 
-* Database creation
+Sample login information: 
 
-* Database initialization
+* Email: sample@sample.com
+* Password: samplepassword
 
-* How to run the test suite
+## TODO
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Full CRUD capability on all forms
+* Display user's first name on dashboard (instead of email)
+* Controller testing on all controllers
+* Hide navbar from home/landing page
+* "About the Developer" section
