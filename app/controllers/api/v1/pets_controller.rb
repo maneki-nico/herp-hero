@@ -21,13 +21,12 @@ class Api::V1::PetsController < ApiController
   def update
     pet = Pet.find(params[:id])
     pet.update(pet_params(:name, :animal, :species, :birthday, :personality, :profile_photo))
-    redirect_to user_path
+    redirect_to "/users/#{current_user.id}"
   end
 
   def destroy
     pet = Pet.find(params[:id])
     pet.destroy
-    redirect_to user_path
   end
 
   private

@@ -81,6 +81,7 @@ const NewPetFormTile = (props) => {
         profile_photo: holdPhoto
       })
     } else {
+      alert("Pet created successfully.")
       clearForm()
     }
   }

@@ -8,7 +8,8 @@ import UpdatePetFormContainer from "./UpdatePetFormContainer"
 const PetShowContainer = (props) => {
   const [pet, setPet] = useState({
     notes: [],
-    id: props.match.params.id
+    id: props.match.params.id,
+    user: {}
   })
   const getPet = async () => {
     try {
@@ -20,12 +21,10 @@ const PetShowContainer = (props) => {
         throw(error)
       }
       const fetchedPet = await response.json()
-      //debugger
       const newPet = {...fetchedPet.pet}
       if (!newPet.notes) {
         newPet.notes = []
       }
-      //debugger
       setPet(newPet)
     } catch(err) {
       console.error(`Error in fetch: ${err.message}`)
@@ -72,7 +71,6 @@ const PetShowContainer = (props) => {
   }
 
   const notesList = pet.notes.map((note) => {
-    //debugger
     return (
       <NoteIndexTile
       key={note.id}
@@ -109,7 +107,10 @@ const PetShowContainer = (props) => {
           />
         </div>
       </div>
-      <UpdatePetFormContainer />
+      <UpdatePetFormContainer
+        pet={pet} 
+        user={pet.user}
+      />
     </div>
   )
 

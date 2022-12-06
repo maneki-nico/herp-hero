@@ -23,7 +23,7 @@
     "react-dom": "~16.8.0",
     "react-geocode": "^0.2.3",
     "react-modal": "^3.16.1",
-    "react-router-dom": "5.0.0",
+    "react-router-dom": "^5.0.0",
     "reactjs-popup": "^2.0.5",
     "redbox-react": "1.6.0"
   },
