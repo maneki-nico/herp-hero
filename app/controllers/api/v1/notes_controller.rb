@@ -18,6 +18,22 @@ class Api::V1::NotesController < ApiController
     render json: Note.find(params[:id]), serializer: NoteSerializer
   end
 
+  def edit
+    note.pet = Pet.find(params[:id])
+  end
+
+  def update
+    note.pet = Pet.find(params[:id])
+    note.pet.update(note_params(:body))
+    redirect_to user_path
+  end
+
+  def destroy
+    pet = Pet.find(params[:id])
+    pet.destroy
+    redirect_to pet_path
+  end
+
   private
   def note_params
     params.require(:note).permit(:body)

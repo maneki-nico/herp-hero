@@ -3,6 +3,7 @@ import PetPhotoTile from "./PetPhotoTile"
 import PetShowTile from "./PetShowTile"
 import NewNoteFormTile from "./NewNoteFormTile"
 import NoteIndexTile from "./NoteIndexTile"
+import UpdatePetFormContainer from "./UpdatePetFormContainer"
 
 const PetShowContainer = (props) => {
   const [pet, setPet] = useState({
@@ -96,7 +97,7 @@ const PetShowContainer = (props) => {
           />
         </div>
       </div>
-      <div className="card cell medium-8 large-8">
+      <div className="card cell medium-4 large-4">
         <div className="card-divider centered">
           <h2 className="form-header">Notes</h2>
         </div>
@@ -108,6 +109,7 @@ const PetShowContainer = (props) => {
           />
         </div>
       </div>
+      <UpdatePetFormContainer />
     </div>
   )
 
