@@ -10,9 +10,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/users/current', to: "users#current"
       resources :users, only: [:show] 
-      resources :pets, only: [:create, :index, :show]
+      resources :pets, only: [:create, :index, :show, :update, :destroy]
       resources :vets, only: [:create, :index, :show]
-      resources :notes, only: [:create, :index, :show]
+      resources :notes, only: [:create, :index, :show, :update, :delete]
       resources :tasks, only: [:create, :index]
     end
   end

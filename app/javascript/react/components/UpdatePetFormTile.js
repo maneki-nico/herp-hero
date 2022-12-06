@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 
-const NewPetFormTile = (props) => {
-  const [newPet, setNewPet] = useState({
-    name: "",
+const UpdatePetFormTile = (props) => {
+  const [pet, setPet] = useState({
     animal: "",
     species: "",
     birthday: "",
@@ -11,48 +10,41 @@ const NewPetFormTile = (props) => {
   })
 
   const validateForm = () => {
-    if (newPet.name.trim === "") {
-      setNewPet({
-        ...newPet,
-        name: null
-      })
-    }
     if (!['Snake', 'Lizard', 'Turtle', 'Frog', 'Axolotl',
-      'Toad', 'Newt', 'Salamander', 'Other'].includes(newPet.animal)) {
+      'Toad', 'Newt', 'Salamander', 'Other'].includes(pet.animal)) {
       setNewPet({
-        ...newPet,
+        ...pet,
         animal: ""
       })
     }
-    if (newPet.species.trim === "") {
+    if (pet.species.trim === "") {
       setNewPet({
-        ...newPet,
+        ...pet,
         species: null
       })
     }
-    if (newPet.birthday.trim === "") {
+    if (pet.birthday.trim === "") {
       setNewPet({
-        ...newPet,
+        ...pet,
         birthday: null
       })
     }
-    if (newPet.personality.trim === "") {
+    if (pet.personality.trim === "") {
       setNewPet({
-        ...newPet,
+        ...pet,
         personality: null
       })
     }
-    if (newPet.profile_photo.trim === "") {
+    if (pet.profile_photo.trim === "") {
       setNewPet({
-        ...newPet,
+        ...pet,
         profile_photo: null
       })
     }
   }
 
   const clearForm = () => {
-    setNewPet({
-      name: '',
+    setPet({
       animal: '',
       species: '',
       birthday: '',
@@ -63,17 +55,15 @@ const NewPetFormTile = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const holdName = newPet.name
-    const holdAnimal = newPet.animal
-    const holdSpecies = newPet.species
-    const holdBirthday = newPet.birthday
-    const holdPersonality = newPet.personality
-    const holdPhoto = newPet.profile_photo
+    const holdAnimal = pet.animal
+    const holdSpecies = pet.species
+    const holdBirthday = pet.birthday
+    const holdPersonality = pet.personality
+    const holdPhoto = pet.profile_photo
     validateForm()
-    const postSuccess = await props.postNewPet(newPet)
+    const postSuccess = await props.postPet(pet)
     if (!postSuccess) {
-      setNewPet({
-        name: holdName, 
+      setPet({
         animal: holdAnimal, 
         species: holdSpecies,
         birthday: holdBirthday,
@@ -81,15 +71,14 @@ const NewPetFormTile = (props) => {
         profile_photo: holdPhoto
       })
     } else {
-      alert("Pet created successfully.")
       clearForm()
     }
   }
 
   const handleChange = (event) => {
     const updatingField = event.currentTarget.name
-    setNewPet({
-      ...newPet,
+    setPet({
+      ...pet,
       [updatingField]: event.currentTarget.value
     })
   }
@@ -98,12 +87,8 @@ const NewPetFormTile = (props) => {
     <div className="form">
       <form className="pet-form" onSubmit={handleSubmit}>
         <label>
-          Name: 
-          <input name="name" id="name" type="string" value={newPet.name} onChange={handleChange} />
-        </label>
-        <label>
           Type of Animal: <br></br>
-          <select name="animal" id="animal" value={newPet.animal} onChange={handleChange}>
+          <select name="animal" id="animal" value={pet.animal} onChange={handleChange}>
             <option name="animal" id="animal" value="">Select</option>
             <option name="animal" id="animal" value="Snake">Snake</option>
             <option name="animal" id="animal" value="Lizard">Lizard</option>
@@ -118,25 +103,24 @@ const NewPetFormTile = (props) => {
         </label>
         <label>
           Species (ex. Leopard Gecko): 
-          <input name="species" id="species" type="string" value={newPet.species} onChange={handleChange}/>
+          <input name="species" id="species" type="string" value={pet.species} onChange={handleChange}/>
         </label>
         <label>
           Birthday: 
-          <input name="birthday" id="birthday" type="date" value={newPet.birthday} onChange={handleChange}/>
+          <input name="birthday" id="birthday" type="date" value={pet.birthday} onChange={handleChange}/>
         </label>
         <label>
           Personality: 
-          <input name="personality" id="personality" type="text" value={newPet.personality} onChange={handleChange}/>
+          <input name="personality" id="personality" type="text" value={pet.personality} onChange={handleChange}/>
         </label>
         <label>
           Add a Photo via URL:
-          <input name="profile_photo" id="profile_photo" type="string" value={newPet.profile_photo} onChange={handleChange}/>
+          <input name="profile_photo" id="profile_photo" type="string" value={pet.profile_photo} onChange={handleChange}/>
         </label>
-        <input className="button small-centered" type="submit" value="Add New Pet"/>
+        <input className="button small-centered" type="submit" value="Update Pet"/>
       </form>
     </div>
   )
 }
 
-
-export default NewPetFormTile
+export default UpdatePetFormTile

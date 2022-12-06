@@ -14,6 +14,21 @@ class Api::V1::PetsController < ApiController
     render json: Pet.find(params[:id]), serializer: PetSerializer
   end
 
+  def edit
+    pet = Pet.find(params[:id])
+  end
+
+  def update
+    pet = Pet.find(params[:id])
+    pet.update(pet_params(:name, :animal, :species, :birthday, :personality, :profile_photo))
+    redirect_to "/users/#{current_user.id}"
+  end
+
+  def destroy
+    pet = Pet.find(params[:id])
+    pet.destroy
+  end
+
   private
   def pet_params
     params.require(:pet).permit(:name, :animal, :species, :birthday, :personality, :profile_photo)

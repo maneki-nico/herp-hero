@@ -46,6 +46,14 @@ button.react_calendar__navigation {
   word-spacing: 2px;
 }
 
+button.button.update-pet-button {
+  width: 150px;
+  height: 30px;
+  margin: auto;
+  margin-top: 15px;
+  padding: 0;
+}
+
 input {
   display:flex;
   margin: auto;
@@ -220,6 +228,7 @@ img.pet-photo {
 
 .card {
   border-radius: 10px;
+  overflow:scroll;
 }
 
 .card-section {
