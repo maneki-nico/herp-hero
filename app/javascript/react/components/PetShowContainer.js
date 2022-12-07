@@ -8,7 +8,7 @@ import UpdatePetFormContainer from "./UpdatePetFormContainer"
 const PetShowContainer = (props) => {
   const [pet, setPet] = useState({
     notes: [],
-    id: props.match.params.id,
+    id: "",
     user: {}
   })
   const getPet = async () => {
@@ -37,6 +37,40 @@ const PetShowContainer = (props) => {
 
   const [errors, setErrors] = useState("")
 
+  const updatePet = async(formPayload) => {
+    try {
+      const petId = props.match.params.id
+      const response = await fetch(`/api/v1/pets/${petId}`, {
+        method: "PATCH",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formPayload),
+      })
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw(error)
+      }
+      const updatedPet = await response.json()
+      if (updatedPet.pet) {
+        const newUpdatedPet = {...updatedPet.pet}
+        if (!newUpdatedPet.notes) {
+          newUpdatedPet.notes = []
+        }
+        setPet(newUpdatedPet)
+        setErrors("")
+        return true
+      } else {
+        setErrors(postedPet.errors)
+        return false
+      }
+    } catch(error) {
+      console.error(`Error in fetch: ${error.message}`)
+    }
+  }
 
   const postNewNote = async (formPayload) => {
     try {
@@ -110,6 +144,8 @@ const PetShowContainer = (props) => {
       <UpdatePetFormContainer
         pet={pet} 
         user={pet.user}
+        updatePet={updatePet}
+        key={pet.updated_at}
       />
     </div>
   )
