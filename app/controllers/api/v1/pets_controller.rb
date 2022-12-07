@@ -20,8 +20,12 @@ class Api::V1::PetsController < ApiController
 
   def update
     pet = Pet.find(params[:id])
-    pet.update(pet_params(:name, :animal, :species, :birthday, :personality, :profile_photo))
-    redirect_to "/users/#{current_user.id}"
+    pet.update(pet_params)
+    if pet.save
+      render json: pet, serializer: PetSerializer
+    else
+      render json: { error: pet.errors.full_messages.to_sentence }
+    end
   end
 
   def destroy

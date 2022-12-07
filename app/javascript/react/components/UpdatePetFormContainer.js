@@ -35,6 +35,7 @@ const UpdatePetFormContainer = (props) => {
       history.push(`/users/${userId}`)
     }
   }
+
   return (
     <div className="card cell medium-8 large-8 pet-info">
       <div className="card-divider centered">
@@ -44,8 +45,9 @@ const UpdatePetFormContainer = (props) => {
       <div className="card-section form">
         {props.errors}
         <UpdatePetFormTile
-          postPet={props.postPet}
           errors={props.errors}
+          updatePet={props.updatePet}
+          pet={props.pet}
         />
       </div>
     </div>

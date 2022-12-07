@@ -2,55 +2,45 @@ import React, { useState } from 'react'
 
 const UpdatePetFormTile = (props) => {
   const [pet, setPet] = useState({
-    animal: "",
-    species: "",
-    birthday: "",
-    personality: "",
-    profile_photo: ""
+    animal: props.pet.animal,
+    species: props.pet.species,
+    birthday: props.pet.birthday,
+    personality: props.pet.personality,
+    profile_photo: props.pet.profile_photo
   })
 
   const validateForm = () => {
     if (!['Snake', 'Lizard', 'Turtle', 'Frog', 'Axolotl',
       'Toad', 'Newt', 'Salamander', 'Other'].includes(pet.animal)) {
-      setNewPet({
+      setPet({
         ...pet,
         animal: ""
       })
     }
     if (pet.species.trim === "") {
-      setNewPet({
+      setPet({
         ...pet,
         species: null
       })
     }
     if (pet.birthday.trim === "") {
-      setNewPet({
+      setPet({
         ...pet,
         birthday: null
       })
     }
     if (pet.personality.trim === "") {
-      setNewPet({
+      setPet({
         ...pet,
         personality: null
       })
     }
     if (pet.profile_photo.trim === "") {
-      setNewPet({
+      setPet({
         ...pet,
         profile_photo: null
       })
     }
-  }
-
-  const clearForm = () => {
-    setPet({
-      animal: '',
-      species: '',
-      birthday: '',
-      personality: '',
-      profile_photo: ''
-    })
   }
 
   const handleSubmit = async (event) => {
@@ -61,7 +51,7 @@ const UpdatePetFormTile = (props) => {
     const holdPersonality = pet.personality
     const holdPhoto = pet.profile_photo
     validateForm()
-    const postSuccess = await props.postPet(pet)
+    const postSuccess = await props.updatePet(pet)
     if (!postSuccess) {
       setPet({
         animal: holdAnimal, 
@@ -71,7 +61,7 @@ const UpdatePetFormTile = (props) => {
         profile_photo: holdPhoto
       })
     } else {
-      clearForm()
+      alert("Pet updated successfully!")
     }
   }
 
