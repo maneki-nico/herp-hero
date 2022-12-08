@@ -104,11 +104,39 @@ const PetShowContainer = (props) => {
     }
   }
 
+  const deleteNote = async(noteId) => {
+    try {
+      const response = await fetch(`/api/v1/notes/${noteId}`, {
+        method: "DELETE",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: null,
+      })
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        const error = new Error(errorMessage)
+        throw(error)
+      }
+      const newNotes = pet.notes.filter(note => note.id !== noteId)
+      setPet({
+        ...pet, 
+        notes: newNotes
+      })
+    } catch(error) {
+      console.error(`Error in fetch: ${error.message}`)
+    }
+  }
+
   const notesList = pet.notes.map((note) => {
     return (
       <NoteIndexTile
       key={note.id}
-      note={note} 
+      note={note}
+      pet={pet} 
+      deleteNote={deleteNote}
       />
     )
   })
@@ -138,6 +166,7 @@ const PetShowContainer = (props) => {
           <NewNoteFormTile
             pet={pet}
             postNewNote={postNewNote}
+            key={pet.updated_at}
           />
         </div>
       </div>
