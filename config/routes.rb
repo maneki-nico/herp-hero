@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       resources :users, only: [:show] 
       resources :pets, only: [:create, :index, :show, :update, :destroy]
       resources :vets, only: [:create, :index, :show]
-      resources :notes, only: [:create, :index, :show, :update, :delete]
+      resources :notes, only: [:create, :index, :show, :update, :destroy]
       resources :tasks, only: [:create, :index]
     end
   end

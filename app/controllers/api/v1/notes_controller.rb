@@ -29,9 +29,8 @@ class Api::V1::NotesController < ApiController
   end
 
   def destroy
-    pet = Pet.find(params[:id])
-    pet.destroy
-    redirect_to pet_path
+    note = Note.find(params[:id])
+    note.destroy
   end
 
   private
