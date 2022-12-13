@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/users/:id' => "homes#index" 
   get '/pets/:id', to: "homes#index"
   get '/map', to: "homes#index"
+  get '/about-developer', to: "homes#index"
   
   namespace :api do
     namespace :v1 do

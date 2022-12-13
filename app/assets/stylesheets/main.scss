@@ -365,10 +365,38 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 4%;
+  height: 5%;
   padding-left: 20px;
   padding-top: 10px;
   color: #FFFFFF;
   font-weight: bold;
   font-family: 'Londrina Solid', sans-serif;
+  a {
+    color: #FFFFFF;
+  }
+}
+
+.developer-portrait {
+  height: 300px;
+  border-radius: 150px;
+  margin-top: 15px;
+  margin-left: 15px;
+  margin-right: auto;
+  
+}
+
+.about-developer {
+  width: fit-content;
+  margin-top: 25px;
+  border-radius: 50px;
+  padding: 35px 50px 35px 50px;
+  h1 {
+    font-family: 'Londrina Solid', sans-serif;
+  }
+  p {
+    font-size: 18px;
+  }
+  .cell.small-6 {
+    align-content: center;
+  }
 }
