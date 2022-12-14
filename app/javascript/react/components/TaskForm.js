@@ -18,6 +18,7 @@ const TaskForm = (props) => {
 
   const clearForm = () => {
     setNewTask ({
+      ...newTask,
       name: ''
     })
   }
@@ -26,7 +27,7 @@ const TaskForm = (props) => {
     event.preventDefault()
     const holdName = newTask.name
     validateForm()
-    if (!props.postNewTask(newTask)) {
+    if (props.postNewTask(newTask)) {
       clearForm()
     } else {
       setNewTask({
