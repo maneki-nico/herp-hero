@@ -5,7 +5,6 @@ import Modal from 'react-modal'
 import TaskForm from './TaskForm'
 import TaskIndexTile from './TaskIndexTile'
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#app');
 
 const CalendarContainer = (props) => {
@@ -21,7 +20,6 @@ const CalendarContainer = (props) => {
   function onChange(nextValue) {
     setValue(nextValue);
   }
-
 
   const onClickDayEvent = (value, event) => {
     setModal({

@@ -145,9 +145,7 @@ const UserShowContainer = (props) => {
         />
       </div>
     </div>
-
   )
-
 }
 
 export default UserShowContainer

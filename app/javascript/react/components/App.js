@@ -5,9 +5,8 @@ import GoogleMap from './GoogleMap'
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import AboutTheDeveloper from './AboutTheDeveloper'
 
-export const App = (props) => {
+export const App = () => {
   return (
-
     <BrowserRouter>
       <Switch>
         <Route exact path="/users/:userId" component={UserShowContainer} />
@@ -16,7 +15,6 @@ export const App = (props) => {
         <Route exact path="/about-developer" component={AboutTheDeveloper} />
       </Switch>
     </BrowserRouter>
-
   )
 }
 
