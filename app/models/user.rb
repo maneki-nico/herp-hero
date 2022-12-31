@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :tasks
   has_one :vet
 
-  validates :zip, presence: true
+  validates :zip, :first_name, presence: true
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

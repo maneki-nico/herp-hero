@@ -116,7 +116,7 @@ const UserShowContainer = (props) => {
 
   return (
     <div className="user-dashboard">
-      <h2 className="centered dash-greeting">Hello, {user.email}!</h2>
+      <h2 className="centered dash-greeting">Hello, {user.first_name}!</h2>
       <div className="grid-x grid-margin-x">
         <CalendarContainer
         tasks={user.tasks}
