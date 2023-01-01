@@ -1,5 +1,5 @@
 import React from "react"
-import photo from './current-me.jpeg';
+import photo from '../../../assets/images/current-me.jpeg'
 
 const AboutTheDeveloper = () => {
   return (
