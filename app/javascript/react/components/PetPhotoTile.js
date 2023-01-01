@@ -1,5 +1,5 @@
 import React from 'react'
-import photo from './generic-pet-photo.png'
+import photo from '../../../assets/images/generic-pet-photo.png'
 
 const PetPhotoTile = (props) => {
   const pet = props.pet
