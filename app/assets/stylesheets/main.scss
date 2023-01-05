@@ -129,6 +129,12 @@ form.pet-form.label {
   height: 450px;
   overflow: scroll;
   padding-left: 30px;
+ li {
+  font-size: 24px;
+  p {
+    font-size: 16px;
+  }
+ }
 }
 
 .map {
@@ -395,6 +401,8 @@ footer {
   }
   p {
     font-size: 18px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
   }
   .cell.small-6 {
     align-content: center;

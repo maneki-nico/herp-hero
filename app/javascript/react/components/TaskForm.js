@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 const TaskForm = (props) => {
 
@@ -57,6 +57,5 @@ const TaskForm = (props) => {
     </div>
   )
 }
-
 
 export default TaskForm

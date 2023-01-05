@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 const NewNoteFormTile = (props) => {
-  //debugger
   const [newNote, setNewNote] = useState({
     body: "",
     petId: props.pet.id
@@ -28,7 +27,6 @@ const NewNoteFormTile = (props) => {
     const holdBody = newNote.body
     const holdPetId = newNote.petId
     validateForm()
-    //debugger
     if (!props.postNewNote(newNote)) {
       clearForm()
     } else {
@@ -60,6 +58,5 @@ const NewNoteFormTile = (props) => {
     </div>
   )
 }
-
 
 export default NewNoteFormTile

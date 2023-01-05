@@ -36,16 +36,11 @@ const MapResultIndexTile = (props) => {
   return (
     <li className="results">
       <div>
-        {result.name} 
-        <br></br>
-        Rated {result.rating} out of 5
-        <br></br>
-        {result.vicinity}
-        <br></br>
+        <h4>{result.name}</h4>
+        <p>Rated {result.rating} out of 5</p>
+        <p>{result.vicinity}</p>
         <button onClick={submitVet} className="button">Add as My Vet</button>
-        <br></br>
-        {message}
-        <br></br>
+        <p>{message}</p>
       </div>
     </li>
   )
