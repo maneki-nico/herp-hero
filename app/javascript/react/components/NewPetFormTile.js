@@ -63,23 +63,11 @@ const NewPetFormTile = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const holdName = newPet.name
-    const holdAnimal = newPet.animal
-    const holdSpecies = newPet.species
-    const holdBirthday = newPet.birthday
-    const holdPersonality = newPet.personality
-    const holdPhoto = newPet.profile_photo
+    const holdPet = {...newPet}
     validateForm()
     const postSuccess = await props.postNewPet(newPet)
     if (!postSuccess) {
-      setNewPet({
-        name: holdName, 
-        animal: holdAnimal, 
-        species: holdSpecies,
-        birthday: holdBirthday,
-        personality: holdPersonality,
-        profile_photo: holdPhoto
-      })
+      setNewPet({...holdPet})
     } else {
       alert("Pet created successfully.")
       clearForm()
