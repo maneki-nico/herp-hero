@@ -48,6 +48,7 @@ const NewNoteFormTile = (props) => {
 
   return (
     <div className="form">
+      {props.errors}
       <form className="pet-form" onSubmit={handleSubmit}>
         <label>
           Body: 

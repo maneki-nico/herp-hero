@@ -3,6 +3,7 @@ import PetIndexTile from "./PetIndexTile"
 import NewPetFormContainer from "./NewPetFormContainer"
 import VetShowTile from "./VetShowTile"
 import CalendarContainer from "./CalendarContainer"
+import postForm from "./HelperUtils"
 
 const UserShowContainer = (props) => {
   const [user, setUser] = useState({
@@ -37,35 +38,17 @@ const UserShowContainer = (props) => {
   }
 
   const postNewPet = async (formPayload) => {
-    try {
-      const response = await fetch(`/api/v1/pets`, {
-        method: 'POST', 
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formPayload)
+    const postedPet = await postForm(`/api/v1/pets`, formPayload)
+    if (postedPet.pet) {
+      setUser({
+        ...user, 
+        pets: [...user.pets, postedPet.pet]
       })
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
-      const postedPet = await response.json()
-      if (postedPet.pet) {
-        setUser({
-          ...user, 
-          pets: [...user.pets, postedPet.pet]
-        })
-        setPetErrors("")
-        return true
-      } else {
-        setPetErrors(postedPet.errors)
-        return false
-      }
-    } catch(err) {
-      console.error(`Error in fetch: ${err.message}`)
+      setPetErrors("")
+      return true
+    } else {
+      setPetErrors(postedPet.errors)
+      return false
     }
   }
 
@@ -83,34 +66,16 @@ const UserShowContainer = (props) => {
   })
 
   const postNewTask = async (formPayload) => {
-    try {
-      const response = await fetch(`/api/v1/tasks`, {
-        method: 'POST', 
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formPayload)
+    const postedTask = await postForm(`/api/v1/tasks`, formPayload)
+    if (postedTask) {
+      setUser({
+        ...user, 
+        tasks: [...user.tasks, postedTask]
       })
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
-      const postedTask = await response.json()
-      if (postedTask) {
-        setUser({
-          ...user, 
-          tasks: [...user.tasks, postedTask]
-        })
-        return true
-      } else {
-        setTaskErrors(postedTask.errors)
-        return false
-      }
-    } catch(err) {
-      console.error(`Error in fetch: ${err.message}`)
+      return true
+    } else {
+      setTaskErrors(postedTask.errors)
+      return false
     }
   }
 
