@@ -4,6 +4,7 @@ import PetShowTile from "./PetShowTile"
 import NewNoteFormTile from "./NewNoteFormTile"
 import NoteIndexTile from "./NoteIndexTile"
 import UpdatePetFormContainer from "./UpdatePetFormContainer"
+import postForm from "./HelperUtils"
 
 const PetShowContainer = (props) => {
   const [pet, setPet] = useState({
@@ -73,34 +74,17 @@ const PetShowContainer = (props) => {
   }
 
   const postNewNote = async (formPayload) => {
-    try {
-      const response = await fetch(`/api/v1/notes`, {
-        method: 'POST', 
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formPayload)
+    const postedNote = await postForm(`/api/v1/notes`, formPayload)
+    //debugger
+    if (postedNote.note) {
+      setPet({
+        ...pet, 
+        notes: [...pet.notes, postedNote.note]
       })
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
-      const postedNote = await response.json()
-      if (postedNote.note) {
-        setPet({
-          ...pet, 
-          notes: [...pet.notes, postedNote.note]
-        })
-        return true
-      } else {
-        setErrors(postedNote.errors)
-        return false
-      }
-    } catch(err) {
-      console.error(`Error in fetch: ${err.message}`)
+      return true
+    } else {
+      setErrors(postedNote.errors)
+      return false
     }
   }
 
@@ -164,6 +148,7 @@ const PetShowContainer = (props) => {
         <div className="card-section">
           {notesList}
           <NewNoteFormTile
+            errors={errors}
             pet={pet}
             postNewNote={postNewNote}
             key={pet.updated_at}
