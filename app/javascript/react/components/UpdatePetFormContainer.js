@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import UpdatePetFormTile from "./UpdatePetFormTile"
+import CRUDForm from "./HelperUtils"
 
 const UpdatePetFormContainer = (props) => {
   const history = useHistory();
@@ -8,20 +9,7 @@ const UpdatePetFormContainer = (props) => {
   const deletePet = async(pet) => {
     try {
       const petId = pet.id
-      const response = await fetch(`/api/v1/pets/${petId}`, {
-        method: "DELETE",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: null,
-      })
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
+      await CRUDForm("DELETE", `/api/v1/pets/${petId}`, null)
     } catch(error) {
       console.error(`Error in fetch: ${error.message}`)
     }

@@ -4,7 +4,7 @@ import PetShowTile from "./PetShowTile"
 import NewNoteFormTile from "./NewNoteFormTile"
 import NoteIndexTile from "./NoteIndexTile"
 import UpdatePetFormContainer from "./UpdatePetFormContainer"
-import postForm from "./HelperUtils"
+import CRUDForm from "./HelperUtils"
 
 const PetShowContainer = (props) => {
   const [pet, setPet] = useState({
@@ -41,21 +41,7 @@ const PetShowContainer = (props) => {
   const updatePet = async(formPayload) => {
     try {
       const petId = props.match.params.id
-      const response = await fetch(`/api/v1/pets/${petId}`, {
-        method: "PATCH",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(formPayload),
-      })
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
-      const updatedPet = await response.json()
+      const updatedPet = await CRUDForm("PATCH", `/api/v1/pets/${petId}`, formPayload) 
       if (updatedPet.pet) {
         const newUpdatedPet = {...updatedPet.pet}
         if (!newUpdatedPet.notes) {
@@ -74,8 +60,7 @@ const PetShowContainer = (props) => {
   }
 
   const postNewNote = async (formPayload) => {
-    const postedNote = await postForm(`/api/v1/notes`, formPayload)
-    //debugger
+    const postedNote = await CRUDForm("POST", `/api/v1/notes`, formPayload)
     if (postedNote.note) {
       setPet({
         ...pet, 
@@ -90,20 +75,7 @@ const PetShowContainer = (props) => {
 
   const deleteNote = async(noteId) => {
     try {
-      const response = await fetch(`/api/v1/notes/${noteId}`, {
-        method: "DELETE",
-        credentials: "same-origin",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: null,
-      })
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
+      await CRUDForm("DELETE", `/api/v1/notes/${noteId}`, null)
       const newNotes = pet.notes.filter(note => note.id !== noteId)
       setPet({
         ...pet, 
