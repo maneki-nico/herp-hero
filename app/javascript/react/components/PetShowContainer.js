@@ -15,13 +15,7 @@ const PetShowContainer = (props) => {
   const getPet = async () => {
     try {
       const petId = props.match.params.id
-      const response = await fetch(`/api/v1/pets/${petId}`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
-      const fetchedPet = await response.json()
+      const fetchedPet = await CRUDForm("GET", `/api/v1/pets/${petId}`)
       const newPet = {...fetchedPet.pet}
       if (!newPet.notes) {
         newPet.notes = []
@@ -99,13 +93,9 @@ const PetShowContainer = (props) => {
 
   return (
     <div className="grid-x grid-margin-x">
-      <div className="card cell medium-4 large-4 pet-info">
-        <div className="card-section">
-          <PetShowTile
-          pet={pet}
-          />
-        </div>
-      </div>
+      <PetShowTile
+      pet={pet}
+      />
       <div className="card cell medium-8 large-8 pet-info">
         <div className="card-section">
           <PetPhotoTile

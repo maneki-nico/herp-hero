@@ -1,4 +1,4 @@
-const CRUDForm = async (method, path, formPayload) => {
+const CRUDForm = async (method, path, formPayload = null) => {
   try {
     const options = {
       method: method, 
