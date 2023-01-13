@@ -3,7 +3,7 @@ import PetIndexTile from "./PetIndexTile"
 import NewPetFormContainer from "./NewPetFormContainer"
 import VetShowTile from "./VetShowTile"
 import CalendarContainer from "./CalendarContainer"
-import postForm from "./HelperUtils"
+import CRUDForm from "./HelperUtils"
 
 const UserShowContainer = (props) => {
   const [user, setUser] = useState({
@@ -38,7 +38,7 @@ const UserShowContainer = (props) => {
   }
 
   const postNewPet = async (formPayload) => {
-    const postedPet = await postForm(`/api/v1/pets`, formPayload)
+    const postedPet = await CRUDForm("POST", `/api/v1/pets`, formPayload)
     if (postedPet.pet) {
       setUser({
         ...user, 
@@ -66,7 +66,7 @@ const UserShowContainer = (props) => {
   })
 
   const postNewTask = async (formPayload) => {
-    const postedTask = await postForm(`/api/v1/tasks`, formPayload)
+    const postedTask = await CRUDForm("POST", `/api/v1/tasks`, formPayload)
     if (postedTask) {
       setUser({
         ...user, 

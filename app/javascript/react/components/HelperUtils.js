@@ -1,14 +1,17 @@
-const postForm = async (path, formPayload) => {
+const CRUDForm = async (method, path, formPayload = null) => {
   try {
-    const response = await fetch(path, {
-      method: 'POST', 
+    const options = {
+      method: method, 
       credentials: 'same-origin',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
-      },
-      body: JSON.stringify(formPayload)
-    })
+      }
+    }
+    if (formPayload !== null) {
+      options.body = JSON.stringify(formPayload)
+    }
+    const response = await fetch(path, options)
     if (!response.ok) {
       const errorMessage = `${response.status} (${response.statusText})`
       const error = new Error(errorMessage)
@@ -20,4 +23,4 @@ const postForm = async (path, formPayload) => {
   }
 }
 
-export default postForm
+export default CRUDForm
