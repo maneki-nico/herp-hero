@@ -1,35 +1,19 @@
 import React, { useState } from 'react'
+import CRUDForm from "./HelperUtils"
 
 const MapResultIndexTile = (props) => {
   const {result} = props
   const [message, setMessage] = useState("")
 
   const submitVet = async() => {
-    try {
-      const response = await fetch(`/api/v1/vets`, {
-        method: 'POST', 
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({name: result.name, address: result.vicinity})
-      })
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
-      const postedVet = await response.json()
-      if (postedVet) {
-        setMessage("Vet added successfully.")
-        return true
-      } else {
-        setMessage("Error adding vet.")
-        return false
-      }
-    } catch(err) {
-      console.error(`Error in fetch: ${err.message}`)
+    const formPayload = {name: result.name, address: result.vicinity}
+    const postedVet = await CRUDForm('POST',`/api/v1/vets`, formPayload) 
+    if (postedVet) {
+      setMessage("Vet added successfully.")
+      return true
+    } else {
+      setMessage("Error adding vet.")
+      return false
     }
   }
 
