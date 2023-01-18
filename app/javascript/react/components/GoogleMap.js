@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Loader } from "@googlemaps/js-api-loader"
 import Geocode from "react-geocode"
 import MapResultIndexTile from "./MapResultIndexTile"
+import CRUDForm from "./HelperUtils"
 
 Geocode.setApiKey("AIzaSyCOELqoVhdQJVv_Itp-OlLR5YCDBqAVJhg");
 
@@ -52,13 +53,7 @@ const GoogleMap = (props) => {
   
   const getUserZip = async () => {
     try {
-      const response = await fetch(`/api/v1/users/current`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
-      const fetchedUser = await response.json()
+      const fetchedUser = await CRUDForm('GET', `/api/v1/users/current`)
       getResult(fetchedUser.user.zip)
     } catch(err) {
       console.error(`Error in fetch: ${err.message}`)

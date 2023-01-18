@@ -18,13 +18,7 @@ const UserShowContainer = (props) => {
   const getUser = async () => {
     try {
       const userId = props.match.params.userId
-      const response = await fetch(`/api/v1/users/${userId}`)
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        const error = new Error(errorMessage)
-        throw(error)
-      }
-      const fetchedUser = await response.json()
+      const fetchedUser = await CRUDForm('GET', `/api/v1/users/${userId}`)
       const newUser = {
         ...fetchedUser.user,
       } 
