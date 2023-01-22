@@ -72,10 +72,6 @@ RSpec.describe Api::V1::VetsController, type: :controller do
     context "when a signed-in user has a vet" do
       it "should display the user's vet on the dashboard", js: true do
         sign_in(user_3)
-        # post :create, params: {user_id: user_2.id, current_user: user_2,
-        # vet: { name: vet_1.name, address: vet_1.address}}
-
-        # parsed_response = JSON.parse(response.body)
 
         visit "/users/#{user_3.id}"
 
