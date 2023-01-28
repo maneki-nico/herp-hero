@@ -36,5 +36,22 @@ RSpec.describe Api::V1::NotesController, type: :controller do
       expect(response.status).to eq(200)
       expect(response.content_type).to eq("application/json")
     end
+
+    context "when a signed-in user completes the form correctly and submits" do
+      it "should return the successfully added note" do
+        sign_in(user_1)
+        post :create, params: { 
+          petId: pet_1.id,
+          note: { body: note_2.body}
+        }
+      
+      parsed_response = JSON.parse(response.body)
+
+      expect(parsed_response["note"]["body"]).to eq(note_2.body)
+      expect(parsed_response["note"]["created_at"]).not_to be(nil)
+      end
+    end
+
+    #context "when the signed-in user"
   end
 end
