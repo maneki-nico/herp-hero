@@ -52,6 +52,20 @@ RSpec.describe Api::V1::NotesController, type: :controller do
       end
     end
 
-    #context "when the signed-in user"
+    context "when the signed-in user does not complete the form correctly" do
+      context "with a blank body" do
+        it "should return the blank body error message" do
+          sign_in(user_1)
+          post :create, params: { 
+            petId: pet_1.id,
+            note: { body: ""}
+          }
+
+          parsed_response = JSON.parse(response.body)
+
+          expect(parsed_response["errors"]).to eq("Body can't be blank")
+        end
+      end
+    end
   end
 end
